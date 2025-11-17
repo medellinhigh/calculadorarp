@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -227,8 +228,8 @@
     <div class="result">
       <div><strong>Valor Lavado:</strong> <span class="value" id="valorTotal">$0.00</span></div>
       <div><strong>Entregar ao Cliente:</strong> <span class="value" id="valorRestante">$0.00</span></div>
-      <div><strong>Máquina (15%):</strong> <span class="value" id="valorMaquina">$0.00</span></div>
-      <div><strong>Devolver Ilegal (<span id="percentual">25%</span>):</strong> <span class="value" id="valorComissao">$0.00</span></div>
+      <div><strong>Máquina (25%):</strong> <span class="value" id="valorMaquina">$0.00</span></div>
+      <div><strong>Devolver Ilegal (<span id="percentual">15%</span>):</strong> <span class="value" id="valorComissao">$0.00</span></div>
     </div>
 
     <div class="buttons">
@@ -286,15 +287,15 @@
       const centavos = obterValorNumerico();
       const valorTotal = centavos / 100;
 
-      const taxaMaquina = 0.15;
+      const taxaMaquina = 0.25;
       const valorMaquina = valorTotal * taxaMaquina;
 
-      const percentual = parceriaAtiva ? 0.20 : 0.25;
+      const percentual = parceriaAtiva ? 0.10 : 0.15;
       const comissao = valorTotal * percentual;
 
       const valorFinalCliente = valorTotal - comissao - valorMaquina;
 
-      document.getElementById("percentual").textContent = parceriaAtiva ? "20%" : "25%";
+      document.getElementById("percentual").textContent = parceriaAtiva ? "19%" : "15%";
       document.getElementById("valorTotal").textContent = formatarUSD(centavos);
       document.getElementById("valorMaquina").textContent = formatarUSD(valorMaquina * 100);
       document.getElementById("valorComissao").textContent = formatarUSD(comissao * 100);
@@ -331,7 +332,7 @@
 Grupo: ${grupo || '[sem grupo]'}
 Valor Lavado: ${valorTotal}
 Entregar ao Cliente: ${valorRestante}
-Máquina (15%): ${valorMaquina}
+Máquina (25%): ${valorMaquina}
 Devolver Ilegal (${percentual}): ${valorComissao}`;
 
       navigator.clipboard.writeText(textoCopiado).then(() => {
@@ -343,3 +344,4 @@ Devolver Ilegal (${percentual}): ${valorComissao}`;
   </script>
 </body>
 </html>
+
